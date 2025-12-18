@@ -300,20 +300,26 @@
 <section id="contact" class="section contact-section">
   <div class="container contact-grid">
 
-    <form
+    <!-- FORM -->
+    <div class="contact-card">
+      <h2>Get In Touch</h2>
+      <p class="contact-sub">
+        Have questions? We're here to help you make the most of our tools.
+      </p>
+
+      <form
   class="contact-form"
   name="contact"
   method="POST"
-  action="/success.html"
   data-netlify="true"
   netlify-honeypot="bot-field"
 >
 
-  <!-- REQUIRED FOR NETLIFY -->
+  <!-- Required hidden input -->
   <input type="hidden" name="form-name" value="contact">
 
-  <!-- SPAM PROTECTION -->
-  <p hidden>
+  <!-- Honeypot spam field -->
+  <p style="display:none;">
     <label>
       Don’t fill this out:
       <input name="bot-field">
@@ -321,19 +327,33 @@
   </p>
 
   <label>Your Name</label>
-  <input type="text" name="name" placeholder="John Doe" required>
+  <input
+    type="text"
+    name="name"
+    placeholder="John Doe"
+    required
+  >
 
   <label>Email Address</label>
-  <input type="email" name="email" placeholder="john@example.com" required>
+  <input
+    type="email"
+    name="email"
+    placeholder="calcbetcare01@gmail.com"
+    required
+  >
 
   <label>Message</label>
-  <textarea name="message" placeholder="Tell us how we can help you..." required></textarea>
+  <textarea
+    name="message"
+    placeholder="Tell us how we can help you..."
+    required
+  ></textarea>
 
   <button type="submit" class="btn primary full">
     Send Message →
   </button>
-</form>
 
+</form>
 
     </div>
 
