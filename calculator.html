@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Odds Calculator | CalcBet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/calculator.css">
+</head>
+<body>
+
+<header class="top-header">
+  <div class="header-container">
+   <div class="logo">Calc<span>Bet</span></div>
+    <nav class="top-nav">
+      <a href="calculator.html" class="nav-link active">Odds Calculator</a>
+     <a href="parlay.html" class="nav-link">Parlay Calculator</a>
+
+      <a href="arbitrage.html" class="nav-link">Arbitrage Calculator</a>
+    </nav>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="card">
+      <h4>Calculator Tools</h4>
+      <a href="calculator.html" class="active">Odds Calculator</a>
+      <a href="parlay.html">Parlay Calculator</a>
+      <a href="arbitrage.html">Arbitrage Calculator</a>
+    </div>
+
+    <div class="card tips">
+      <h4><i data-lucide="lightbulb"></i> odds Tips</h4>
+      <ul>
+        <li>All selections must win</li>
+        <li>Higher risk = higher reward</li>
+        <li>Odds multiply together</li>
+        <li>Start with 2–3 legs</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <section class="content fade delay-1">
+
+    <h1>Odds Calculator</h1>
+    <p class="subtitle">
+      Convert odds formats and calculate potential returns instantly with precision accuracy.
+    </p>
+
+    <div class="card calculator">
+      <label>Select Odds Format</label>
+
+      <div class="tabs">
+        <button class="tab active" data-type="decimal">Decimal</button>
+        <button class="tab" data-type="american">American</button>
+        <button class="tab" data-type="fractional">Fractional</button>
+      </div>
+
+      <div class="inputs">
+        <div>
+          <label>Odds</label>
+          <input id="odds" placeholder="e.g. 2.50 or +150 or 5/2">
+        </div>
+
+        <div>
+          <label>Stake Amount (₦)</label>
+          <input id="stake" type="number" value="100">
+        </div>
+      </div>
+
+      <button class="btn primary full" onclick="calculate()">Calculate Returns</button>
+
+      <div class="results">
+        <p><strong>Total Return:</strong> <span id="return">—</span></p>
+        <p><strong>Profit:</strong> <span id="profit">—</span></p>
+        <p><strong>ROI:</strong> <span id="roi">—</span></p>
+      </div>
+    </div>
+ 
+    <!-- INFO BOX -->
+    <div class="info-box">
+      <div class="info-icon">
+        <i data-lucide="info"></i>
+      </div>
+      <div>
+      <h4>How Odds Calculation Works</h4>
+      <p>
+        Odds are converted to decimal format and multiplied by your stake.
+        Profit equals total return minus stake.
+        ROI shows profit as a percentage of stake.
+      </p>
+    </div>
+
+  </section>
+</main>
+
+<!-- JS (LOGIC + ANIMATION) -->
+<script>
+/* ===== TAB SWITCHING ===== */
+let currentType = "decimal";
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    currentType = tab.dataset.type;
+  });
+});
+
+/* ===== CONVERSIONS ===== */
+function toDecimal(odds, type) {
+  if (type === "decimal") {
+    return parseFloat(odds);
+  }
+
+  if (type === "american") {
+    let a = parseFloat(odds);
+    return a > 0 ? (a / 100) + 1 : (100 / Math.abs(a)) + 1;
+  }
+
+  if (type === "fractional") {
+    let parts = odds.split("/");
+    if (parts.length !== 2) return NaN;
+    return (parseFloat(parts[0]) / parseFloat(parts[1])) + 1;
+  }
+}
+
+/* ===== CALCULATION ===== */
+function calculate() {
+  const oddsInput = document.getElementById("odds").value;
+  const stake = parseFloat(document.getElementById("stake").value);
+
+  const decimal = toDecimal(oddsInput, currentType);
+
+  if (isNaN(decimal) || decimal <= 1) {
+    alert("Please enter valid odds");
+    return;
+  }
+
+  const totalReturn = decimal * stake;
+  const profit = totalReturn - stake;
+  const roi = (profit / stake) * 100;
+
+  document.getElementById("return").textContent = `₦${totalReturn.toFixed(2)}`;
+  document.getElementById("profit").textContent = `₦${profit.toFixed(2)}`;
+  document.getElementById("roi").textContent = `${roi.toFixed(1)}%`;
+}
+
+/* ===== ANIMATION ===== */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>

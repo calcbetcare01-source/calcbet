@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Parlay Calculator | CalcBet</title>
+
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/parlay.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<header class="top-header">
+  <div class="header-container">
+   <div class="logo">Calc<span>Bet</span></div>
+    <nav class="top-nav">
+      <a href="calculator.html" class="nav-link">Odds Calculator</a>
+     <a href="parlay.html" class="nav-link active">Parlay Calculator</a>
+
+      <a href="arbitrage.html" class="nav-link">Arbitrage Calculator</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="card">
+      <h4>Calculator Tools</h4>
+      <a href="calculator.html">Odds Calculator</a>
+      <a href="parlay.html" class="active">Parlay Calculator</a>
+      <a href="arbitrage.html">Arbitrage Calculator</a>
+    </div>
+
+    <div class="card tips">
+      <h4><i data-lucide="lightbulb"></i> Parlay Tips</h4>
+      <ul>
+        <li>All selections must win</li>
+        <li>Higher risk = higher reward</li>
+        <li>Odds multiply together</li>
+        <li>Start with 2–3 legs</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <section class="content">
+
+    <h1>Parlay Calculator</h1>
+    <p class="subtitle">
+      Combine multiple bets and calculate your potential parlay payout with ease.
+    </p>
+
+    <div class="card form-card">
+
+      <h3>Add Your Selections</h3>
+
+      <div id="matches">
+
+        <div class="match">
+          <span class="match-label">MATCH 1</span>
+
+          <div class="teams">
+            <input type="text" placeholder="Team A">
+            <span>vs</span>
+            <input type="text" placeholder="Team B">
+          </div>
+
+          <label>Decimal Odds</label>
+          <input type="number" class="odds" placeholder="e.g. 2.50">
+        </div>
+
+      </div>
+
+      <button class="add-match" onclick="addMatch()">
+        + Add Another Match
+      </button>
+
+      <label>Total Stake Amount (₦)</label>
+      <input type="number" id="stake" placeholder="100">
+
+      <div class="actions">
+        <button class="primary" onclick="calculateParlay()">Calculate Parlay</button>
+        <button class="secondary" onclick="resetForm()">Reset</button>
+      </div>
+
+      <div class="results">
+        <p>Total Odds: <strong id="totalOdds">—</strong></p>
+        <p>Profit: <strong id="profit">—</strong></p>
+        <p>Total Return: <strong id="total">—</strong></p>
+      </div>
+
+    </div>
+
+    <!-- INFO BOX -->
+    <div class="info-box">
+      <div class="info-icon">
+        <i data-lucide="info"></i>
+      </div>
+      <div>
+        <h4>Understanding Parlay Bets</h4>
+        <p>
+          A parlay combines multiple bets into one wager. All selections must win
+          for payout. Odds multiply together, creating higher rewards but higher risk.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+let matchCount = 1;
+
+function addMatch() {
+  matchCount++;
+  const div = document.createElement("div");
+  div.className = "match";
+  div.innerHTML = `
+    <span class="match-label">MATCH ${matchCount}</span>
+    <div class="teams">
+      <input type="text" placeholder="Team A">
+      <span>vs</span>
+      <input type="text" placeholder="Team B">
+    </div>
+    <label>Decimal Odds</label>
+    <input type="number" class="odds" placeholder="e.g. 2.50">
+  `;
+  document.getElementById("matches").appendChild(div);
+}
+
+function calculateParlay() {
+  const stake = parseFloat(document.getElementById("stake").value);
+  const oddsInputs = document.querySelectorAll(".odds");
+
+  if (!stake) return alert("Enter stake");
+
+  let totalOdds = 1;
+
+  for (let input of oddsInputs) {
+    const o = parseFloat(input.value);
+    if (!o || o <= 1) return alert("Invalid odds");
+    totalOdds *= o;
+  }
+
+  const total = stake * totalOdds;
+  const profit = total - stake;
+
+  document.getElementById("totalOdds").innerText = totalOdds.toFixed(2);
+  document.getElementById("profit").innerText = profit.toFixed(2);
+  document.getElementById("total").innerText = total.toFixed(2);
+}
+
+function resetForm() {
+  location.reload();
+}
+
+lucide.createIcons();
+</script>
+
+</body>
+</html>

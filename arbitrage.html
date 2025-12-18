@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Arbitrage Calculator | CalcBet</title>
+  <meta name="description" content="Calculate arbitrage betting stakes and guaranteed profit instantly with CalcBet." />
+
+  <link rel="icon" href="favicon.ico">
+ <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/arbitrage.css">
+
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="top-header">
+  <div class="header-container">
+    <div class="logo">Calc<span>Bet</span></div>
+    <nav class="top-nav">
+      <a href="calculator.html" class="nav-link">Odds Calculator</a>
+      <a href="parlay.html" class="nav-link">Parlay Calculator</a>
+    <a href="arbitrage.html" class="nav-link active">Arbitrage Calculator</a>
+
+    </nav>
+  </div>
+</header>
+
+
+<!-- MAIN LAYOUT -->
+<main class="layout">
+
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="card">
+      <h4>Calculator Tools</h4>
+      <a href="calculator.html">Odds Calculator</a>
+      <a href="parlay.html">Parlay Calculator</a>
+      <a href="arbitrage.html" class="active">Arbitrage Calculator</a>
+    </div>
+
+    <div class="card tips">
+      <h4><i data-lucide="lightbulb"></i> Arbitrage Tips</h4>
+      <ul>
+        <li>Arb % must be below 100%</li>
+        <li>Use same market type</li>
+        <li>Stake accurately</li>
+        <li>Guaranteed profit if valid</li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <!-- CONTENT -->
+  <section class="content">
+
+    <h1>Arbitrage Calculator</h1>
+    <p class="subtitle">
+      Calculate guaranteed profit opportunities by splitting stakes correctly.
+    </p>
+
+    <!-- FORM CARD -->
+    <div class="card form-card">
+
+      <h3>Enter Arbitrage Details</h3>
+
+      <label>Total Investment</label>
+      <div class="money-input">
+        <span>₦</span>
+        <input type="number" id="stake" placeholder="Enter total stake">
+      </div>
+
+      <label>Odds – Outcome 1</label>
+      <input type="number" id="odds1" step="0.01" placeholder="e.g. 2.10">
+
+      <label>Odds – Outcome 2</label>
+      <input type="number" id="odds2" step="0.01" placeholder="e.g. 1.95">
+
+      <div class="actions">
+        <button class="primary" onclick="calculateArb()">Calculate Arbitrage</button>
+        <button class="secondary" onclick="resetArb()">Reset</button>
+      </div>
+
+      <div class="results">
+        <p>Stake on Outcome 1: <strong id="stake1">—</strong></p>
+        <p>Stake on Outcome 2: <strong id="stake2">—</strong></p>
+        <p>Guaranteed Profit: <strong id="profit">—</strong></p>
+        <p>Arbitrage Percentage: <strong id="arbPercent">—</strong></p>
+      </div>
+
+    </div>
+
+    <!-- INFO BOX -->
+    <div class="info-box">
+      <div class="info-icon">
+        <i data-lucide="info"></i>
+      </div>
+      <div>
+        <h4>How Arbitrage Betting Works</h4>
+        <p>
+          Arbitrage betting involves placing bets on all possible outcomes
+          using different bookmakers to guarantee a profit regardless of the result.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- SCRIPT -->
+<script>
+function calculateArb() {
+  const stake = parseFloat(document.getElementById("stake").value);
+  const odds1 = parseFloat(document.getElementById("odds1").value);
+  const odds2 = parseFloat(document.getElementById("odds2").value);
+
+  if (!stake || !odds1 || !odds2) {
+    alert("Please enter valid stake and odds");
+    return;
+  }
+
+  const inv1 = 1 / odds1;
+  const inv2 = 1 / odds2;
+  const arb = inv1 + inv2;
+
+  if (arb >= 1) {
+    alert("No arbitrage opportunity (arb ≥ 100%)");
+    return;
+  }
+
+  const stake1 = (stake * inv1) / arb;
+  const stake2 = (stake * inv2) / arb;
+  const profit = (stake1 * odds1) - stake;
+  const arbPercent = (1 - arb) * 100;
+
+  document.getElementById("stake1").innerText = stake1.toFixed(2);
+  document.getElementById("stake2").innerText = stake2.toFixed(2);
+  document.getElementById("profit").innerText = profit.toFixed(2);
+  document.getElementById("arbPercent").innerText = arbPercent.toFixed(2) + "%";
+}
+
+function resetArb() {
+  document.getElementById("stake").value = "";
+  document.getElementById("odds1").value = "";
+  document.getElementById("odds2").value = "";
+  document.getElementById("stake1").innerText = "—";
+  document.getElementById("stake2").innerText = "—";
+  document.getElementById("profit").innerText = "—";
+  document.getElementById("arbPercent").innerText = "—";
+}
+
+lucide.createIcons();
+</script>
+
+</body>
+</html>
