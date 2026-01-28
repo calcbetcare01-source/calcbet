@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Terms of Service — CalcBet</title>
+    <meta name="description" content="CalcBet Terms of Service" />
+    <style>
+      :root{
+        --bg:#0b1220; --card:#0f1a2e; --text:#e7eefc; --muted:#a9b7d0;
+        --line:rgba(255,255,255,.10); --accent:#4f8cff; --accent2:#22c55e;
+      }
+      *{box-sizing:border-box}
+      body{
+        margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        color:var(--text);
+        background:
+          radial-gradient(1200px 600px at 15% 10%, rgba(79,140,255,.18), transparent 60%),
+          radial-gradient(900px 500px at 85% 25%, rgba(34,197,94,.14), transparent 55%),
+          linear-gradient(180deg, #070b14 0%, var(--bg) 60%, #070b14 100%);
+      }
+      a{color:inherit; text-decoration:none}
+      .wrap{max-width:980px; margin:0 auto; padding:24px}
+      .nav{
+        display:flex; align-items:center; justify-content:space-between; gap:16px;
+        border:1px solid var(--line); background:rgba(15,26,46,.55);
+        backdrop-filter: blur(10px);
+        padding:14px 16px; border-radius:16px;
+      }
+      .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
+      .logo{
+        width:34px; height:34px; border-radius:12px;
+        background: linear-gradient(135deg, rgba(79,140,255,1), rgba(34,197,94,.9));
+        box-shadow: 0 10px 30px rgba(79,140,255,.18);
+      }
+      .navlinks{display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end}
+      .pill{
+        border:1px solid var(--line); padding:8px 10px; border-radius:999px;
+        background:rgba(255,255,255,.03);
+      }
+      .pill:hover{border-color:rgba(255,255,255,.22)}
+      .hero{padding:26px 0 10px}
+      h1{margin:10px 0 6px; font-size:34px; letter-spacing:-.4px}
+      .sub{color:var(--muted); max-width:70ch; line-height:1.6}
+      .card{
+        margin-top:18px;
+        border:1px solid var(--line);
+        background: linear-gradient(180deg, rgba(15,26,46,.72), rgba(15,26,46,.40));
+        border-radius:18px; padding:18px;
+      }
+      h2{margin:18px 0 8px; font-size:18px}
+      p,li{color:var(--muted); line-height:1.7}
+      ul{margin:8px 0 0 18px}
+      .note{
+        margin-top:14px; padding:12px 14px; border-radius:14px;
+        border:1px solid rgba(255,255,255,.14);
+        background: rgba(255,255,255,.03);
+      }
+      .note b{color:var(--text)}
+      .footer{
+        margin-top:26px; padding:18px;
+        border:1px solid var(--line); border-radius:18px;
+        background:rgba(15,26,46,.45);
+        display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px;
+      }
+      .small{font-size:13px; color:var(--muted)}
+      .k{
+        display:inline-flex; align-items:center; gap:8px; padding:8px 10px;
+        border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.03);
+      }
+      @media (max-width:700px){
+        .nav{flex-direction:column; align-items:flex-start}
+        .navlinks{justify-content:flex-start}
+        h1{font-size:28px}
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header class="nav">
+        <a class="brand" href="/">
+          <span class="logo" aria-hidden="true"></span>
+          <span>CalcBet</span>
+        </a>
+
+        <nav class="navlinks" aria-label="Primary">
+          <a class="pill" href="/">Home</a>
+          <a class="pill" href="/odds">Odds Calculator</a>
+          <a class="pill" href="/parlay">Parlay Calculator</a>
+          <a class="pill" href="/arbitrage">Arbitrage Finder</a>
+          <a class="pill" href="/privacy.html">Privacy</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="small">Last updated: <span id="lastUpdated"></span></div>
+        <h1>Terms of Service</h1>
+        <p class="sub">
+          These Terms govern your use of CalcBet and its calculators. By using this site, you agree to these Terms.
+          If you do not agree, please do not use the site.
+        </p>
+      </section>
+
+      <main class="card">
+        <h2>1) Educational tools only</h2>
+        <p>
+          CalcBet provides calculators and informational tools for understanding betting mathematics (e.g., odds conversion,
+          parlay returns, arbitrage percentage). We do not provide betting tips, predictions, or financial advice.
+        </p>
+
+        <h2>2) No guarantees</h2>
+        <p>
+          Betting involves risk. Outputs are based on the numbers you enter and common formulas; we do not guarantee winnings,
+          accuracy for every bookmaker format, or availability of any opportunity.
+        </p>
+
+        <h2>3) User responsibility</h2>
+        <ul>
+          <li>You are responsible for verifying inputs and results before placing any wager.</li>
+          <li>You must follow local laws and age restrictions (18+ or as required in your jurisdiction).</li>
+          <li>You agree not to misuse the site for illegal or harmful activity.</li>
+        </ul>
+
+        <h2>4) Acceptable use</h2>
+        <p>
+          You agree not to attempt to disrupt the site, reverse engineer protected parts of the service, scrape excessively,
+          or use automated systems that degrade performance.
+        </p>
+
+        <h2>5) Intellectual property</h2>
+        <p>
+          The site design, branding, and content are owned by CalcBet (or licensors) and protected by applicable laws.
+          You may not reproduce or redistribute them without permission.
+        </p>
+
+        <h2>6) Limitation of liability</h2>
+        <p>
+          To the maximum extent permitted by law, CalcBet is not liable for losses, damages, or claims arising from your
+          use of the calculators, including betting losses or missed opportunities.
+        </p>
+
+        <h2>7) Changes to the service or Terms</h2>
+        <p>
+          We may update features and these Terms from time to time. Continued use of the site after changes means you accept
+          the updated Terms.
+        </p>
+
+        <h2>8) Contact</h2>
+        <p>
+          Questions about these Terms? Email:
+          <a class="k" href="mailto:calcbetcare01@gmail.com">calcbetcare01@gmail.com</a>
+        </p>
+
+        <div class="note">
+          <b>Responsible Gambling:</b> If gambling becomes a problem, seek professional help in your area.
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="small">© <span id="year"></span> CalcBet. All rights reserved.</div>
+        <div class="small">
+          <a class="k" href="/terms.html">Terms</a>
+          <a class="k" href="/privacy.html">Privacy</a>
+          <a class="k" href="/">Back to Home</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // small helpers (no framework needed)
+      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("lastUpdated").textContent =
+        new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+    </script>
+  </body>
+</html>
